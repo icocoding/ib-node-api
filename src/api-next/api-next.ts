@@ -2563,10 +2563,14 @@ export class IBApiNext {
     order: Order,
     orderState: OrderState,
   ): void => {
+    if(!order) {
+      console.log('no order')
+      return
+    }
     subscriptions.forEach((sub) => {
       const allOrders = sub.lastAllValue ?? [];
       const changeOrderIndex = allOrders.findIndex(
-        (p) => p.order.permId == order.permId,
+        (p) => p.order?.permId == order.permId,
       );
       if (changeOrderIndex === -1) {
         // new open order - add it
