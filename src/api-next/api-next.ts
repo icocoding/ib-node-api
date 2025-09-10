@@ -2563,15 +2563,17 @@ export class IBApiNext {
     order: Order,
     orderState: OrderState,
   ): void => {
-    if(!order) {
-      console.log('no order')
-      sub.next({
-        all: allOrders
-      });
-      return
-    }
     subscriptions.forEach((sub) => {
       const allOrders = sub.lastAllValue ?? [];
+      // order 可能为空
+      if(!order) {
+        console.log('no order')
+        sub.next({
+          all: allOrders
+        });
+        return
+      }
+      
       const changeOrderIndex = allOrders.findIndex(
         (p) => p.order?.permId == order.permId,
       );
