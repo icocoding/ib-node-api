@@ -2565,6 +2565,9 @@ export class IBApiNext {
   ): void => {
     if(!order) {
       console.log('no order')
+      sub.next({
+        all: allOrders
+      });
       return
     }
     subscriptions.forEach((sub) => {
