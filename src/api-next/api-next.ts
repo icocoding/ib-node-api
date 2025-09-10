@@ -2699,7 +2699,7 @@ export class IBApiNext {
     subscriptions.forEach((sub) => {
       const allOrders = sub.lastAllValue ?? [];
       const changeOrderIndex = allOrders.findIndex(
-        (p) => p.order.permId == permId,
+        (p) => p.order?.permId == permId,
       );
       if (changeOrderIndex !== -1) {
         const updatedOrder: OpenOrder = allOrders[changeOrderIndex];
